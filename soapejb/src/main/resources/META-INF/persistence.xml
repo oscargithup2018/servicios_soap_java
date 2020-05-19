@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+	<persistence-unit name="soapejb">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <jta-data-source>java:jboss/env/jdbc/consultorio_juridico</jta-data-source>
+        <mapping-file>META-INF/querys-orm.xml</mapping-file>
+		<class>co.com.soapejb.modelo.Abogado</class>
+		<class>co.com.soapejb.modelo.Caso</class>
+		<class>co.com.soapejb.modelo.Cliente</class>
+		<class>co.com.soapejb.modelo.Factura</class>
+		<class>co.com.soapejb.modelo.Juez</class>
+		<class>co.com.soapejb.modelo.Juzgado</class>
+		<class>co.com.soapejb.modelo.Servicio</class>
+		<class>co.com.soapejb.modelo.Serviciocaso</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+		<properties>
+			<property name="hibernate.connection.driver_class"
+				value="com.mysql.jdbc.Driver" />
+			<property name="hibernate_dialect"
+				value="org.hibernate.dialect.MySQLDialect" />
+			<property name="elcipselink.jdbc.cache-statements"
+				value="true" />
+		</properties>
+	</persistence-unit>
+</persistence>
