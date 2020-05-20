@@ -14,6 +14,9 @@ import java.util.List;
 public class Abogado implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	public static final String CREATE_LAWYER = "Abogado.CREATE_LAWYER";
+
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int cedula;

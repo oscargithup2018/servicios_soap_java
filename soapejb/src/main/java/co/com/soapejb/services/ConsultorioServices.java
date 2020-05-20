@@ -10,6 +10,7 @@ import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagementType;
 
 import co.com.soapejb.fachada.ConsultorioFacade;
+import co.com.soapejb.modelo.Abogado;
 import co.com.soapejb.modelo.Cliente;
 
 @Stateless
@@ -40,6 +41,14 @@ public class ConsultorioServices {
 	 */
 	public Cliente searchByDocument(String document) throws Exception {
 		return facade.searchByDocument(document);
+	}
+
+	public boolean createLawyer(Abogado abogado) throws Exception{
+		return facade.createLawyer(abogado);
+	}
+
+	public boolean deleteClient(int documento) throws Exception{
+		return facade.deleteClient(documento);
 	}
 
 }

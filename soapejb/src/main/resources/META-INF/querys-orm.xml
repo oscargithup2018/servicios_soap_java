@@ -3,8 +3,7 @@
 	
 	<named-query name="Cliente.SEARCH_CLIENT">
 		<query>
-			select c
-			from Cliente c
+			select c from Cliente c
 		</query>
 	</named-query>
 	
@@ -15,5 +14,4 @@
 			where c.cedula=:doc
 		</query>
 	</named-query>
-
 </entity-mappings>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Remote;
 
+import co.com.soapejb.modelo.Abogado;
 import co.com.soapejb.modelo.Cliente;
 
 @Remote
@@ -18,5 +19,9 @@ public interface ConsultorioFacade<T> {
 	public <T> List<T> listClients() throws Exception;
 	
 	public T searchByDocument(String document) throws Exception;
+
+	public boolean createLawyer(Abogado abogado) throws Exception;
+
+	public boolean deleteClient(int document) throws Exception;
 
 }
