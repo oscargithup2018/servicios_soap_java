@@ -1,121 +1,129 @@
 package co.com.soapejb.modelo;
 
-import java.io.Serializable;
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 
 /**
  * The persistent class for the abogado database table.
- * 
  */
 @Entity
-@NamedQuery(name="Abogado.findAll", query="SELECT a FROM Abogado a")
+@NamedQuery(name = "Abogado.findAll", query = "SELECT a FROM Abogado a")
 public class Abogado implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public static final String CREATE_LAWYER = "Abogado.CREATE_LAWYER";
+    public static final String CREATE_LAWYER = "Abogado.CREATE_LAWYER";
 
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int cedula;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int cedula;
 
-	private String apellidos;
+    private String apellidos;
 
-	private String direccion;
+    private String direccion;
 
-	private String email;
+    private String email;
 
-	private String nombres;
+    private String nombres;
 
-	private int tarjetap;
+    private int tarjetap;
 
-	private String telefono;
+    private String telefono;
 
-	//bi-directional many-to-one association to Caso
-	@OneToMany(mappedBy="abogado")
-	private List<Caso> casos;
+    //bi-directional many-to-one association to Caso
+    @OneToMany(mappedBy = "abogado")
+    private List<Caso> casos;
 
-	public Abogado() {
-	}
+    public Abogado() {
+    }
 
-	public int getCedula() {
-		return this.cedula;
-	}
+    public Abogado(String apellidos, String direccion, String email, String nombres, int tarjetap, String telefono) {
+        this.apellidos = apellidos;
+        this.direccion = direccion;
+        this.email = email;
+        this.nombres = nombres;
+        this.tarjetap = tarjetap;
+        this.telefono = telefono;
+    }
 
-	public void setCedula(int cedula) {
-		this.cedula = cedula;
-	}
+    public int getCedula() {
+        return this.cedula;
+    }
 
-	public String getApellidos() {
-		return this.apellidos;
-	}
+    public void setCedula(int cedula) {
+        this.cedula = cedula;
+    }
 
-	public void setApellidos(String apellidos) {
-		this.apellidos = apellidos;
-	}
+    public String getApellidos() {
+        return this.apellidos;
+    }
 
-	public String getDireccion() {
-		return this.direccion;
-	}
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
 
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
-	}
+    public String getDireccion() {
+        return this.direccion;
+    }
 
-	public String getEmail() {
-		return this.email;
-	}
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getEmail() {
+        return this.email;
+    }
 
-	public String getNombres() {
-		return this.nombres;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setNombres(String nombres) {
-		this.nombres = nombres;
-	}
+    public String getNombres() {
+        return this.nombres;
+    }
 
-	public int getTarjetap() {
-		return this.tarjetap;
-	}
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
 
-	public void setTarjetap(int tarjetap) {
-		this.tarjetap = tarjetap;
-	}
+    public int getTarjetap() {
+        return this.tarjetap;
+    }
 
-	public String getTelefono() {
-		return this.telefono;
-	}
+    public void setTarjetap(int tarjetap) {
+        this.tarjetap = tarjetap;
+    }
 
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
-	}
+    public String getTelefono() {
+        return this.telefono;
+    }
 
-	public List<Caso> getCasos() {
-		return this.casos;
-	}
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
 
-	public void setCasos(List<Caso> casos) {
-		this.casos = casos;
-	}
+    public List<Caso> getCasos() {
+        return this.casos;
+    }
 
-	public Caso addCaso(Caso caso) {
-		getCasos().add(caso);
-		caso.setAbogado(this);
+    public void setCasos(List<Caso> casos) {
+        this.casos = casos;
+    }
 
-		return caso;
-	}
+    public Caso addCaso(Caso caso) {
+        getCasos().add(caso);
+        caso.setAbogado(this);
 
-	public Caso removeCaso(Caso caso) {
-		getCasos().remove(caso);
-		caso.setAbogado(null);
+        return caso;
+    }
 
-		return caso;
-	}
+    public Caso removeCaso(Caso caso) {
+        getCasos().remove(caso);
+        caso.setAbogado(null);
+
+        return caso;
+    }
 
 }

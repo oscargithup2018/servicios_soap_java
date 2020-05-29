@@ -50,12 +50,16 @@ public class ConsultorioServiceWeb implements Serializable {
     }
 
     @WebMethod(operationName = "createLawyer")
-    public boolean createLawyer(@WebParam(name = "abogado") Abogado lawyer) {
+//    public boolean createLawyer(@WebParam(name = "abogado") Abogado lawyer) {
+    public boolean createLawyer(@WebParam(name = "apellidos") String apellidos,
+                                @WebParam(name = "direccion") String direccion, @WebParam(name = "email") String email,
+                                @WebParam(name = "nombres") String nombres, @WebParam(name = "tarjeta") int tarjeta,
+                                @WebParam(name = "telefono") String telefono) {
         boolean flag = false;
+        Abogado lawyer = new Abogado(apellidos, direccion, email, nombres, tarjeta, telefono);
         try {
             if (lawyer.getNombres() != null && !lawyer.getNombres().equals("")) {
-                consultorioServices.createLawyer(lawyer);
-                flag = true;
+                flag = consultorioServices.createLawyer(lawyer);
             }
         } catch (Exception e) {
             Abogado abogado = new Abogado();
