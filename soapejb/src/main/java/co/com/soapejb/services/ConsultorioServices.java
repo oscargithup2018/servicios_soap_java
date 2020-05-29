@@ -12,6 +12,7 @@ import javax.ejb.TransactionManagementType;
 import co.com.soapejb.fachada.ConsultorioFacade;
 import co.com.soapejb.modelo.Abogado;
 import co.com.soapejb.modelo.Cliente;
+import co.com.soapejb.modelo.Juzgado;
 
 @Stateless
 @LocalBean
@@ -51,4 +52,7 @@ public class ConsultorioServices {
 		return facade.deleteClient(documento);
 	}
 
+	public boolean createCourt(Juzgado juzgado) {
+		return facade.createCourt(juzgado);
+	}
 }

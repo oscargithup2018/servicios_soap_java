@@ -4,6 +4,7 @@ import co.com.soapejb.fachada.ConsultorioFacade;
 import co.com.soapejb.modelo.Abogado;
 import co.com.soapejb.modelo.Caso;
 import co.com.soapejb.modelo.Cliente;
+import co.com.soapejb.modelo.Juzgado;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -59,7 +60,9 @@ public class ConsultorioRepository implements ConsultorioFacade {
         boolean flag = false;
         try {
             if (abogado.getNombres() != null && !abogado.getNombres().equals("")) {
-                etm.persist(abogado);
+                etm.merge(abogado);
+                etm.getTransaction().commit();
+//                etm.persist(abogado);
                 flag = true;
             }
 
@@ -79,6 +82,23 @@ public class ConsultorioRepository implements ConsultorioFacade {
         }
 
         return retorno;
+    }
+
+    @Override
+    public boolean createCourt(Juzgado juzgado) {
+        boolean flag = false;
+        try {
+            if (juzgado.getAsistente() != null) {
+                etm.merge(juzgado);
+                etm.getTransaction().commit();
+//                etm.persist(juzgado);
+                flag = true;
+            }
+
+        } catch (NoResultException ex) {
+            System.out.println(ex);
+        }
+        return flag;
     }
 
     private Cliente buscarClientePorCedula(int codigo) throws Exception {

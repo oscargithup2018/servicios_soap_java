@@ -2,6 +2,7 @@ package co.com.soapweb.service.webservices;
 
 import co.com.soapejb.modelo.Abogado;
 import co.com.soapejb.modelo.Cliente;
+import co.com.soapejb.modelo.Juzgado;
 import co.com.soapejb.services.ConsultorioServices;
 
 import javax.ejb.EJB;
@@ -22,7 +23,7 @@ public class ConsultorioServiceWeb implements Serializable {
     @EJB
     private ConsultorioServices consultorioServices;
 
-    @WebMethod(operationName = "listPersons")
+    @WebMethod(operationName = "listClients")
     public List<Cliente> listPersons() {
         List<Cliente> clienteArrayList = new ArrayList<>();
         try {
@@ -34,7 +35,7 @@ public class ConsultorioServiceWeb implements Serializable {
     }
 
 
-    @WebMethod(operationName = "searchPerson")
+    @WebMethod(operationName = "searchClient")
     public Cliente searchClientByDocument(@WebParam(name = "documentPerson") String documentPerson) {
         Cliente clienteRetorno = new Cliente();
         try {
@@ -50,16 +51,34 @@ public class ConsultorioServiceWeb implements Serializable {
     }
 
     @WebMethod(operationName = "createLawyer")
-//    public boolean createLawyer(@WebParam(name = "abogado") Abogado lawyer) {
-    public boolean createLawyer(@WebParam(name = "apellidos") String apellidos,
-                                @WebParam(name = "direccion") String direccion, @WebParam(name = "email") String email,
-                                @WebParam(name = "nombres") String nombres, @WebParam(name = "tarjeta") int tarjeta,
+    public boolean createLawyer(@WebParam(name = "cedula") String cedula,
+                                @WebParam(name = "nombres") String nombres,
+                                @WebParam(name = "apellidos") String apellidos,
+                                @WebParam(name = "direccion") String direccion,
+                                @WebParam(name = "email") String email,
+                                @WebParam(name = "tarjeta") String tarjeta,
                                 @WebParam(name = "telefono") String telefono) {
         boolean flag = false;
-        Abogado lawyer = new Abogado(apellidos, direccion, email, nombres, tarjeta, telefono);
+        Abogado lawyer = new Abogado(cedula, apellidos, direccion, email, nombres, tarjeta, telefono);
         try {
             if (lawyer.getNombres() != null && !lawyer.getNombres().equals("")) {
                 flag = consultorioServices.createLawyer(lawyer);
+            }
+        } catch (Exception e) {
+            Abogado abogado = new Abogado();
+        }
+        return flag;
+    }
+
+    @WebMethod(operationName = "createCourt")
+    public boolean createCourt(@WebParam(name = "asistente") String asistente,
+                                @WebParam(name = "secretario") String secretario,
+                                @WebParam(name = "tipo") String tipo) {
+        boolean flag = false;
+        Juzgado juzgado = new Juzgado(asistente, secretario, tipo);
+        try {
+            if (juzgado.getAsistente() != null && !juzgado.getAsistente().equals("")) {
+                flag = consultorioServices.createCourt(juzgado);
             }
         } catch (Exception e) {
             Abogado abogado = new Abogado();

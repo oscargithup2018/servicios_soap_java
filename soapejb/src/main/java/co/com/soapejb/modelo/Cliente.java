@@ -13,15 +13,17 @@ import java.util.List;
 @NamedQuery(name="Cliente.findAll", query="SELECT c FROM Cliente c")
 public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	public static final String SEARCH_CLIENT = "Cliente.SEARCH_CLIENT";
 	public static final String SEARCH_CLIENT_DOCUMENT = "Cliente.SEARCH_CLIENT_DOCUMENT";
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int cedula;
+	private int id;
 
 	private String apellidos;
+
+	private int cedula;
 
 	private String direccion;
 
@@ -42,12 +44,12 @@ public class Cliente implements Serializable {
 	public Cliente() {
 	}
 
-	public int getCedula() {
-		return this.cedula;
+	public int getId() {
+		return this.id;
 	}
 
-	public void setCedula(int cedula) {
-		this.cedula = cedula;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getApellidos() {
@@ -56,6 +58,14 @@ public class Cliente implements Serializable {
 
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
+	}
+
+	public int getCedula() {
+		return this.cedula;
+	}
+
+	public void setCedula(int cedula) {
+		this.cedula = cedula;
 	}
 
 	public String getDireccion() {

@@ -6,6 +6,7 @@ import javax.ejb.Remote;
 
 import co.com.soapejb.modelo.Abogado;
 import co.com.soapejb.modelo.Cliente;
+import co.com.soapejb.modelo.Juzgado;
 
 @Remote
 public interface ConsultorioFacade<T> {
@@ -24,4 +25,5 @@ public interface ConsultorioFacade<T> {
 
 	public boolean deleteClient(int document) throws Exception;
 
+    public boolean createCourt(Juzgado juzgado);
 }

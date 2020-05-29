@@ -15,9 +15,11 @@ public class Juez implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int cedula;
+	private int id;
 
 	private String apellidos;
+
+	private int cedula;
 
 	private String direccion;
 
@@ -37,12 +39,12 @@ public class Juez implements Serializable {
 	public Juez() {
 	}
 
-	public int getCedula() {
-		return this.cedula;
+	public int getId() {
+		return this.id;
 	}
 
-	public void setCedula(int cedula) {
-		this.cedula = cedula;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getApellidos() {
@@ -51,6 +53,14 @@ public class Juez implements Serializable {
 
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
+	}
+
+	public int getCedula() {
+		return this.cedula;
+	}
+
+	public void setCedula(int cedula) {
+		this.cedula = cedula;
 	}
 
 	public String getDireccion() {

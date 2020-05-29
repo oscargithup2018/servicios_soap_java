@@ -35,6 +35,12 @@ public class Juzgado implements Serializable {
 	public Juzgado() {
 	}
 
+	public Juzgado(String asistente, String secretario, String tipo) {
+		this.asistente = asistente;
+		this.secretario = secretario;
+		this.tipo = tipo;
+	}
+
 	public int getId() {
 		return this.id;
 	}

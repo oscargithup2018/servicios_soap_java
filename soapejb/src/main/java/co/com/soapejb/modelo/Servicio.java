@@ -2,7 +2,6 @@ package co.com.soapejb.modelo;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
 /**
@@ -21,10 +20,6 @@ public class Servicio implements Serializable {
 	private String nombreServicio;
 
 	private int valorServicio;
-
-	//bi-directional many-to-one association to Serviciocaso
-	@OneToMany(mappedBy="servicio")
-	private List<Serviciocaso> serviciocasos;
 
 	public Servicio() {
 	}
@@ -51,28 +46,6 @@ public class Servicio implements Serializable {
 
 	public void setValorServicio(int valorServicio) {
 		this.valorServicio = valorServicio;
-	}
-
-	public List<Serviciocaso> getServiciocasos() {
-		return this.serviciocasos;
-	}
-
-	public void setServiciocasos(List<Serviciocaso> serviciocasos) {
-		this.serviciocasos = serviciocasos;
-	}
-
-	public Serviciocaso addServiciocaso(Serviciocaso serviciocaso) {
-		getServiciocasos().add(serviciocaso);
-		serviciocaso.setServicio(this);
-
-		return serviciocaso;
-	}
-
-	public Serviciocaso removeServiciocaso(Serviciocaso serviciocaso) {
-		getServiciocasos().remove(serviciocaso);
-		serviciocaso.setServicio(null);
-
-		return serviciocaso;
 	}
 
 }
