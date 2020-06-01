@@ -35,7 +35,7 @@ public class Abogado implements Serializable {
 	private String telefono;
 
 	//bi-directional many-to-one association to Caso
-	@OneToMany(mappedBy="abogado")
+	@OneToMany(mappedBy="abogado", fetch = FetchType.EAGER)
 	private List<Caso> casos;
 
 	public Abogado() {

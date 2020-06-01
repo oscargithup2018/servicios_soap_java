@@ -48,7 +48,7 @@ create table caso
     constraint caso_ibfk_1
         foreign key (idAbogado) references abogado (id),
     constraint caso_ibfk_3
-        foreign key (idCliente) references cliente (id),
+        foreign key (idCliente) references cliente (id) on delete cascade,
     constraint caso_ibfk_4
         foreign key (idJuzgado) references juzgado (id)
 );

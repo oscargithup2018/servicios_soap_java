@@ -28,8 +28,13 @@ public class ConsultorioRepository implements ConsultorioFacade {
         List<Cliente> clientes = new ArrayList<Cliente>();
         List<Cliente> clientesDos = new ArrayList<Cliente>();
 
-        Query q = etm.createNamedQuery(Cliente.SEARCH_CLIENT);
+        Query q = etm.createNamedQuery(Cliente.SEARCH_CLIENTS);
         clientes = q.getResultList();
+
+        for (Cliente cliente : clientes) {
+            List<Caso> b = new ArrayList<Caso>();
+            cliente.setCasos(b);
+        }
 
         return clientes;
     }
@@ -74,11 +79,20 @@ public class ConsultorioRepository implements ConsultorioFacade {
 
     @Override
     public boolean deleteClient(int document) throws Exception {
-        Cliente cliente1 = buscarClientePorCedula(document);
+        Cliente c = new Cliente();
         boolean retorno = false;
-        if (cliente1.getCedula() > 0) {
-            etm.remove(cliente1);
-            retorno = true;
+        //        Cliente cliente1 = buscarClientePorCedula(document);
+        Query q = etm.createNamedQuery(Cliente.SEARCH_CLIENT_DOCUMENT).setParameter("doc", Integer.valueOf(document));
+        try {
+            c = (Cliente) q.getSingleResult();
+            if (c.getCedula() > 0) {
+                etm.remove(c);
+                retorno = true;
+            }
+
+
+        } catch (NoResultException e) {
+            System.err.println(e);
         }
 
         return retorno;

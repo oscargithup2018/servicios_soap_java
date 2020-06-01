@@ -14,7 +14,7 @@ import java.util.List;
 public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	public static final String SEARCH_CLIENT = "Cliente.SEARCH_CLIENT";
+	public static final String SEARCH_CLIENTS = "Cliente.SEARCH_CLIENTS";
 	public static final String SEARCH_CLIENT_DOCUMENT = "Cliente.SEARCH_CLIENT_DOCUMENT";
 
 	@Id
@@ -38,7 +38,7 @@ public class Cliente implements Serializable {
 	private String telefono;
 
 	//bi-directional many-to-one association to Caso
-	@OneToMany(mappedBy="cliente")
+	@OneToMany(mappedBy="cliente", fetch = FetchType.EAGER)
 	private List<Caso> casos;
 
 	public Cliente() {
