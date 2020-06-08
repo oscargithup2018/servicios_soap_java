@@ -24,6 +24,7 @@ public class Caso implements Serializable {
 
 	//bi-directional many-to-one association to Abogado
 	@ManyToOne(fetch=FetchType.LAZY)
+//	@ManyToOne()
 	@JoinColumn(name="idAbogado")
 	private Abogado abogado;
 

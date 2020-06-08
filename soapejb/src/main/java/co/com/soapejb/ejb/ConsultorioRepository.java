@@ -8,10 +8,7 @@ import co.com.soapejb.modelo.Juzgado;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,8 +62,12 @@ public class ConsultorioRepository implements ConsultorioFacade {
         boolean flag = false;
         try {
             if (abogado.getNombres() != null && !abogado.getNombres().equals("")) {
+                List<Caso> casos =  new ArrayList<>();
+                abogado.setCasos(casos);
                 etm.merge(abogado);
-                etm.getTransaction().commit();
+                etm.persist(abogado);
+//                etm.persist(abogado);
+//                etm.flush();
 //                etm.persist(abogado);
                 flag = true;
             }
@@ -103,8 +104,11 @@ public class ConsultorioRepository implements ConsultorioFacade {
         boolean flag = false;
         try {
             if (juzgado.getAsistente() != null) {
-                etm.merge(juzgado);
-                etm.getTransaction().commit();
+//                etm.getTransaction().begin();
+                etm.persist(juzgado);
+//                etm.getTransaction().commit();
+//                etm.merge(juzgado);
+//                etm.getTransaction().commit();
 //                etm.persist(juzgado);
                 flag = true;
             }

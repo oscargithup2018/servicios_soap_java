@@ -7,18 +7,18 @@ import java.util.List;
 
 /**
  * The persistent class for the abogado database table.
- * 
+ *
  */
 @Entity
 @NamedQuery(name="Abogado.findAll", query="SELECT a FROM Abogado a")
 public class Abogado implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-    public static final String CREATE_LAWYER = "Abogado.CREATE_LAWYER";
+	public static final String CREATE_LAWYER = "Abogado.CREATE_LAWYER";
 
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 
 	private String apellidos;
 
@@ -34,8 +34,10 @@ public class Abogado implements Serializable {
 
 	private String telefono;
 
+
 	//bi-directional many-to-one association to Caso
-	@OneToMany(mappedBy="abogado", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="abogado", cascade = CascadeType.ALL)
+//	@OneToMany(mappedBy="abogado", fetch = FetchType.EAGER)
 	private List<Caso> casos;
 
 	public Abogado() {
@@ -78,6 +80,15 @@ public class Abogado implements Serializable {
 	public String getNombres() {
 		return this.nombres;
 	}
+
+	public String getApellidos() {
+		return apellidos;
+	}
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+
 
 	public void setNombres(String nombres) {
 		this.nombres = nombres;
