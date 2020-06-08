@@ -4,14 +4,14 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
         <jta-data-source>java:jboss/env/jdbc/consultorio_juridico</jta-data-source>
         <mapping-file>META-INF/querys-orm.xml</mapping-file>
-		<class>co.com.soapejb.modelo.Abogado</class>
-		<class>co.com.soapejb.modelo.Caso</class>
-		<class>co.com.soapejb.modelo.Cliente</class>
-		<class>co.com.soapejb.modelo.Factura</class>
-		<class>co.com.soapejb.modelo.Juez</class>
-		<class>co.com.soapejb.modelo.Juzgado</class>
-		<class>co.com.soapejb.modelo.Servicio</class>
-		<class>co.com.soapejb.modelo.Serviciocaso</class>
+        <class>co.com.soapejb.modelo.Abogado</class>
+        <class>co.com.soapejb.modelo.Caso</class>
+        <class>co.com.soapejb.modelo.Cliente</class>
+        <class>co.com.soapejb.modelo.Factura</class>
+        <class>co.com.soapejb.modelo.Juez</class>
+        <class>co.com.soapejb.modelo.Juzgado</class>
+        <class>co.com.soapejb.modelo.Servicio</class>
+        <class>co.com.soapejb.modelo.Serviciocaso</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
 		<properties>

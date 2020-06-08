@@ -7,18 +7,16 @@ import java.util.List;
 
 /**
  * The persistent class for the abogado database table.
- *
+ * 
  */
 @Entity
 @NamedQuery(name="Abogado.findAll", query="SELECT a FROM Abogado a")
 public class Abogado implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	public static final String CREATE_LAWYER = "Abogado.CREATE_LAWYER";
-
-
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
 
 	private String apellidos;
 
@@ -34,23 +32,37 @@ public class Abogado implements Serializable {
 
 	private String telefono;
 
-
 	//bi-directional many-to-one association to Caso
-	@OneToMany(mappedBy="abogado", cascade = CascadeType.ALL)
-//	@OneToMany(mappedBy="abogado", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="abogado")
 	private List<Caso> casos;
 
 	public Abogado() {
 	}
 
-	public Abogado(String cedula, String apellidos, String direccion, String email, String nombres, String tarjetap, String telefono) {
+	public Abogado(String cedula, String nombres,  String apellidos, String direccion, String email , String tarjeta, String telefono) {
 		this.cedula = Integer.parseInt(cedula);
 		this.apellidos = apellidos;
 		this.direccion = direccion;
 		this.email = email;
 		this.nombres = nombres;
-		this.tarjetap = Integer.parseInt(tarjetap);
+		this.tarjetap = Integer.parseInt(tarjeta);
 		this.telefono = telefono;
+	}
+
+	public int getId() {
+		return this.id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getApellidos() {
+		return this.apellidos;
+	}
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
 	}
 
 	public int getCedula() {
@@ -80,15 +92,6 @@ public class Abogado implements Serializable {
 	public String getNombres() {
 		return this.nombres;
 	}
-
-	public String getApellidos() {
-		return apellidos;
-	}
-
-	public void setApellidos(String apellidos) {
-		this.apellidos = apellidos;
-	}
-
 
 	public void setNombres(String nombres) {
 		this.nombres = nombres;

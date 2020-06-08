@@ -65,9 +65,9 @@ public class ConsultorioRepository implements ConsultorioFacade {
                 List<Caso> casos =  new ArrayList<>();
                 abogado.setCasos(casos);
                 etm.merge(abogado);
-                etm.persist(abogado);
 //                etm.persist(abogado);
-//                etm.flush();
+//                etm.persist(abogado);
+                etm.flush();
 //                etm.persist(abogado);
                 flag = true;
             }

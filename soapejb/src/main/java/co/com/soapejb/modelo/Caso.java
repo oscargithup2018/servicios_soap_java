@@ -3,6 +3,7 @@ package co.com.soapejb.modelo;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -14,17 +15,17 @@ import java.util.Date;
 public class Caso implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
+
 	private String descripcion;
 
 	@Temporal(TemporalType.DATE)
 	private Date fechaInicio;
 
-	@Id
-	private int id;
-
 	//bi-directional many-to-one association to Abogado
 	@ManyToOne(fetch=FetchType.LAZY)
-//	@ManyToOne()
 	@JoinColumn(name="idAbogado")
 	private Abogado abogado;
 
@@ -38,7 +39,19 @@ public class Caso implements Serializable {
 	@JoinColumn(name="idJuzgado")
 	private Juzgado juzgado;
 
+	//bi-directional many-to-one association to Serviciocaso
+	@OneToMany(mappedBy="caso", cascade= {CascadeType.PERSIST, CascadeType.REMOVE})
+	private List<Serviciocaso> serviciocasos;
+
 	public Caso() {
+	}
+
+	public int getId() {
+		return this.id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getDescripcion() {
@@ -55,14 +68,6 @@ public class Caso implements Serializable {
 
 	public void setFechaInicio(Date fechaInicio) {
 		this.fechaInicio = fechaInicio;
-	}
-
-	public int getId() {
-		return this.id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public Abogado getAbogado() {
@@ -87,6 +92,28 @@ public class Caso implements Serializable {
 
 	public void setJuzgado(Juzgado juzgado) {
 		this.juzgado = juzgado;
+	}
+
+	public List<Serviciocaso> getServiciocasos() {
+		return this.serviciocasos;
+	}
+
+	public void setServiciocasos(List<Serviciocaso> serviciocasos) {
+		this.serviciocasos = serviciocasos;
+	}
+
+	public Serviciocaso addServiciocaso(Serviciocaso serviciocaso) {
+		getServiciocasos().add(serviciocaso);
+		serviciocaso.setCaso(this);
+
+		return serviciocaso;
+	}
+
+	public Serviciocaso removeServiciocaso(Serviciocaso serviciocaso) {
+		getServiciocasos().remove(serviciocaso);
+		serviciocaso.setCaso(null);
+
+		return serviciocaso;
 	}
 
 }

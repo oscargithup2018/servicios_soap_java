@@ -59,7 +59,7 @@ public class ConsultorioServiceWeb implements Serializable {
                                 @WebParam(name = "tarjeta") String tarjeta,
                                 @WebParam(name = "telefono") String telefono) {
         boolean flag = false;
-        Abogado lawyer = new Abogado(cedula, apellidos, direccion, email, nombres, tarjeta, telefono);
+        Abogado lawyer = new Abogado(cedula, nombres, apellidos, direccion, email, tarjeta, telefono);
         try {
             if (lawyer.getNombres() != null && !lawyer.getNombres().equals("")) {
                 flag = consultorioServices.createLawyer(lawyer);
@@ -72,8 +72,8 @@ public class ConsultorioServiceWeb implements Serializable {
 
     @WebMethod(operationName = "createCourt")
     public boolean createCourt(@WebParam(name = "asistente") String asistente,
-                                @WebParam(name = "secretario") String secretario,
-                                @WebParam(name = "tipo") String tipo) {
+                               @WebParam(name = "secretario") String secretario,
+                               @WebParam(name = "tipo") String tipo) {
         boolean flag = false;
         Juzgado juzgado = new Juzgado(asistente, secretario, tipo);
         try {

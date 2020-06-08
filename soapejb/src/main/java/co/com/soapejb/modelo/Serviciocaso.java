@@ -16,41 +16,31 @@ public class Serviciocaso implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idServicioCaso;
-
-	private int idcaso;
-
-	private int idservicio;
+	private int id;
 
 	//bi-directional many-to-one association to Factura
-	@OneToMany(mappedBy="serviciocaso")
+	@OneToMany(mappedBy="serviciocaso", cascade = CascadeType.ALL)
 	private List<Factura> facturas;
+
+	//bi-directional many-to-one association to Caso
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="idcaso")
+	private Caso caso;
+
+	//bi-directional many-to-one association to Servicio
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="idservicio")
+	private Servicio servicio;
 
 	public Serviciocaso() {
 	}
 
-	public int getIdServicioCaso() {
-		return this.idServicioCaso;
+	public int getId() {
+		return this.id;
 	}
 
-	public void setIdServicioCaso(int idServicioCaso) {
-		this.idServicioCaso = idServicioCaso;
-	}
-
-	public int getIdcaso() {
-		return this.idcaso;
-	}
-
-	public void setIdcaso(int idcaso) {
-		this.idcaso = idcaso;
-	}
-
-	public int getIdservicio() {
-		return this.idservicio;
-	}
-
-	public void setIdservicio(int idservicio) {
-		this.idservicio = idservicio;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public List<Factura> getFacturas() {
@@ -73,6 +63,22 @@ public class Serviciocaso implements Serializable {
 		factura.setServiciocaso(null);
 
 		return factura;
+	}
+
+	public Caso getCaso() {
+		return this.caso;
+	}
+
+	public void setCaso(Caso caso) {
+		this.caso = caso;
+	}
+
+	public Servicio getServicio() {
+		return this.servicio;
+	}
+
+	public void setServicio(Servicio servicio) {
+		this.servicio = servicio;
 	}
 
 }
